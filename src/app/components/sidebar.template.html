@@ -1,0 +1,60 @@
+<!-- START Sidebar (left)-->
+<div class="aside-inner">
+   <nav sidebar="" sidebar-anyclick-close="" class="sidebar">
+      <!-- START sidebar nav-->
+      <ul class="nav">
+         <!-- START user info-->
+         <li class="has-user-block">
+            <div collapse="userBlockVisible">
+               <div class="item user-block">
+                  <!-- User picture-->
+                  <div class="user-block-picture">
+                     <div class="user-block-status">
+                        <img src="../../public/img/user/01.jpg" alt="Avatar" class="img-thumbnail img-circle" />
+                        <div class="circle circle-success circle-lg"></div>
+                     </div>
+                  </div>
+                  <!-- Name and Job-->
+                  <div class="user-block-info">
+                     <span class="user-block-name">晚秋大神</span>
+                     <span class="user-block-role">国务总理</span>
+                  </div>
+               </div>
+            </div>
+         </li>
+         <!-- END user info-->
+         <!-- Iterates over all sidebar items-->
+
+         <li class="ng-scope nav-heading">
+            <span class="">主要导航</span>
+         </li>
+
+         <li ng-click="toggleCollapse(pIndex, true)" routerLinkActive="active">
+            <a title="Welcome" href="" routerLink="/home" >
+               <em class="iconfont icon-shouye"></em>
+               <span>欢迎页面</span>
+            </a>
+         </li>
+
+         <li [ngClass]="{'active': select.nav==nav}" *ngFor="let nav of navs" (click)="onSelect('nav', nav)">
+            <a href="javascript:;">
+               <!-- <div class="pull-right label label-primary">new</div> -->
+               <em class="iconfont" [ngClass]="nav.expand ? 'icon-xiangxiajiantou' : 'icon-xiangshangjiantou'" (click)="nav.expand=!nav.expand"></em>
+               <span>{{nav.name}}</span>
+               <div class="md-ripple-container"></div>
+            </a>
+
+            <ul class="nav sidebar-subnav collapse" [ngClass]="{'in': nav.expand}">
+               <li [ngClass]="{'active': select.snav==snav}" *ngFor="let snav of nav.snavs" (click)="$event.stopPropagation(); onSelect('snav', snav, nav)">
+                  <a title="Widgets" href="javascript:;">
+                     <span class="">{{snav.name}}</span>
+                     <div class="md-ripple-container"></div>
+                  </a>
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <!-- END sidebar nav-->
+   </nav>
+</div>
+<!-- END Sidebar (left)-->
